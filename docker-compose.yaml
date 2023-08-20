@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  # MySQL
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./pkg/configs/sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=douyin
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_RANDOM_ROOT_PASSWORD="yes"
+  # ETCD
+  Etcd:
+    image: 'bitnami/etcd:latest'
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+
