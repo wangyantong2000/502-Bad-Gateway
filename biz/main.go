@@ -3,22 +3,27 @@
 package main
 
 import (
+	"douyin/biz/router"
 	"douyin/biz/rpc"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/config"
 	"github.com/cloudwego/hertz/pkg/network/standard"
 )
 
+func register(r *server.Hertz) {
+
+	router.GeneratedRegister(r)
+
+}
 func main() {
 	rpc.Init()
-	opts := []config.Option{server.WithHostPorts("127.0.0.1:8080")} //局域网IPV4地址192.168.5.7:8080
+	opts := []config.Option{server.WithHostPorts("192.168.5.7:8080")} //局域网IPV4地址192.168.5.7:8080
 
 	hertzNet := standard.NewTransporter
 
 	opts = append(opts, server.WithTransport(hertzNet))
 
 	h := server.Default(opts...)
-
 	register(h)
 	h.Spin()
 

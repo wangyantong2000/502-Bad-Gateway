@@ -8,9 +8,8 @@ import (
 )
 
 // register registers all routers.
-func register(r *server.Hertz) {
+func register1(r *server.Hertz) {
 
 	router.GeneratedRegister(r)
 
-	customizedRegister(r)
 }

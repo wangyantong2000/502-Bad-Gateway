@@ -13,11 +13,22 @@ func TestGetUserByName(t *testing.T) {
 		log.Println("成功", res)
 	}
 }
+
+//	func TestCreateUser(t *testing.T) {
+//		Init()
+//		user := new(model.User)
+//		user.UserName = "123456"
+//		user.Password = "123456"
+//		err := CreateUser(user)
+//		if err == nil {
+//			log.Println("成功")
+//		}
+//	}
 func TestCreateUser(t *testing.T) {
 	Init()
 	user := new(model.User)
-	user.UserName = "123456"
-	user.Password = "123456"
+	user.UserName = "123456t"
+	user.Password = "123456t"
 	err := CreateUser(user)
 	if err == nil {
 		log.Println("成功")

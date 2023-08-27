@@ -208,6 +208,7 @@ func (s *UserServiceImpl) UserInfo(ctx context.Context, req *user.DouyinUserRequ
 		return res, nil
 	}
 	myId := claims.Id
+
 	u, err := db.GetUserById(userId)
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {

@@ -23,12 +23,32 @@ func GetUserById(id int64) (*model.User, error) {
 	}
 	return user, nil
 }
+
+//	func CreateUser(user *model.User) error {
+//		if err := DB.Create(&user).Error; err != nil {
+//			log.Printf("创建失败")
+//			return err
+//		}
+//		return nil
+//	}
 func CreateUser(user *model.User) error {
-	if err := DB.Create(&user).Error; err != nil {
-		log.Printf("创建失败")
+	tx := DB.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+	if err := tx.Error; err != nil {
+		log.Printf(err.Error())
 		return err
 	}
-	return nil
+	if err := tx.Create(&user).Error; err != nil {
+		log.Printf(err.Error())
+		tx.Rollback()
+		return err
+	}
+
+	return tx.Commit().Error
 }
 func IsFollowById(user_id int64, to_user_id int64) (*model.Follow, error) {
 	follow := new(model.Follow)

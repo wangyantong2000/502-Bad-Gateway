@@ -2,61 +2,53 @@ package rpc
 
 import (
 	"context"
-	"douyin/kitex_gen/user"
-	"douyin/kitex_gen/user/userservice"
+	"douyin/kitex_gen/video"
+	"douyin/kitex_gen/video/videoservice"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/transport"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
-var userClient userservice.Client
+var videoClient videoservice.Client
 
-func initUser() {
+func initVideo() {
 	r, err := etcd.NewEtcdResolver([]string{"192.168.100.129:2379"})
 	if err != nil {
 		panic(err)
 	}
-
-	c, err := userservice.NewClient(
-		"userservice",
+	c, err := videoservice.NewClient(
+		"videoservice",
 		client.WithTransportProtocol(transport.GRPC),
 		client.WithResolver(r),
-
 		client.WithSuite(tracing.NewClientSuite()),
 	)
 	if err != nil {
 		panic(err)
 	}
-	userClient = c
+	videoClient = c
 }
-
-func Register(ctx context.Context, req *user.DouyinUserRegisterRequest) (*user.DouyinUserRegisterResponse, error) {
-	resp, err := userClient.Register(ctx, req)
+func Feed(ctx context.Context, req *video.DouyinFeedRequest) (*video.DouyinFeedResponse, error) {
+	resp, err := videoClient.Feed(ctx, req)
 	if err != nil {
 		panic(err)
 		return resp, err
 	}
-
 	return resp, nil
 }
-
-func Login(ctx context.Context, req *user.DouyinUserLoginRequest) (*user.DouyinUserLoginResponse, error) {
-	resp, err := userClient.Login(ctx, req)
+func PublishAction(ctx context.Context, req *video.DouyinPublishActionRequest) (*video.DouyinPublishActionResponse, error) {
+	resp, err := videoClient.PublishAction(ctx, req)
 	if err != nil {
 		panic(err)
 		return resp, err
 	}
-
 	return resp, nil
 }
-
-func UserInfo(ctx context.Context, req *user.DouyinUserRequest) (*user.DouyinUserResponse, error) {
-	resp, err := userClient.UserInfo(ctx, req)
+func PublishList(ctx context.Context, req *video.DouyinPublishListRequest) (*video.DouyinPublishListResponse, error) {
+	resp, err := videoClient.PublishList(ctx, req)
 	if err != nil {
 		panic(err)
 		return resp, err
 	}
-
 	return resp, nil
 }
