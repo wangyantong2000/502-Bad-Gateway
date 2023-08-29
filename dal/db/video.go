@@ -86,7 +86,11 @@ func IsFavoriteById(userId int64, videoId int64) (*model.Favorite, error) {
 	favorite := new(model.Favorite)
 	err := DB.Where("user_id=? AND video_id=?", userId, videoId).First(&favorite).Error
 	if err != nil {
-		log.Printf("读取失败")
+		if err == gorm.ErrRecordNotFound {
+			log.Printf("没有点赞")
+		} else {
+			log.Printf("读取失败")
+		}
 		return favorite, err
 	}
 	return favorite, nil

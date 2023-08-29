@@ -20,7 +20,7 @@ func main() {
 	db.Init()
 	Jwt = jwt.NewJWT([]byte("signingKey"))
 	minio.Init()
-	r, err := etcd.NewEtcdRegistry([]string{"192.168.100.129:2379"}) // 服务器地址:2379
+	r, err := etcd.NewEtcdRegistry([]string{"192.168.5.54:2379"}) // 服务器地址:2379
 	if err != nil {
 		log.Fatal(err)
 	}

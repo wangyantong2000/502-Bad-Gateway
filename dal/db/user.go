@@ -2,6 +2,7 @@ package db
 
 import (
 	"douyin/dal/model"
+	"gorm.io/gorm"
 	"log"
 )
 
@@ -54,7 +55,11 @@ func IsFollowById(user_id int64, to_user_id int64) (*model.Follow, error) {
 	follow := new(model.Follow)
 	err := DB.Where("user_id=? AND to_user_id=?", user_id, to_user_id).First(&follow).Error
 	if err != nil {
-		log.Printf("读取失败")
+		if err == gorm.ErrRecordNotFound {
+			log.Printf("没有关注")
+		} else {
+			log.Printf("读取失败")
+		}
 		return follow, err
 	}
 	return follow, nil

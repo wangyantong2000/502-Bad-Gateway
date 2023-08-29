@@ -9,7 +9,7 @@ import (
 var DB *gorm.DB
 
 func Init() {
-	dsn := "gorm:gorm@tcp(192.168.100.129:3306)/douyin?charset=utf8&parseTime=True&loc=Local"
+	dsn := "gorm:gorm@tcp(192.168.5.54:3306)/douyin?charset=utf8&parseTime=True&loc=Local"
 	//dsn := "root:180575@tcp(127.0.0.1:3306)/douyin?charset=utf8&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		PrepareStmt: false,

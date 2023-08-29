@@ -13,7 +13,7 @@ import (
 var userClient userservice.Client
 
 func initUser() {
-	r, err := etcd.NewEtcdResolver([]string{"192.168.100.129:2379"})
+	r, err := etcd.NewEtcdResolver([]string{"192.168.5.54:2379"})
 	if err != nil {
 		panic(err)
 	}

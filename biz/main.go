@@ -6,8 +6,6 @@ import (
 	"douyin/biz/router"
 	"douyin/biz/rpc"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/common/config"
-	"github.com/cloudwego/hertz/pkg/network/standard"
 )
 
 func register(r *server.Hertz) {
@@ -17,13 +15,17 @@ func register(r *server.Hertz) {
 }
 func main() {
 	rpc.Init()
-	opts := []config.Option{server.WithHostPorts("192.168.5.7:8080")} //局域网IPV4地址192.168.5.7:8080
-
-	hertzNet := standard.NewTransporter
-
-	opts = append(opts, server.WithTransport(hertzNet))
-
-	h := server.Default(opts...)
+	h := server.New(
+		server.WithHostPorts("192.168.5.7:8080"),
+		server.WithHandleMethodNotAllowed(true), // coordinate with NoMethod
+	)
+	//opts := []config.Option{server.WithHostPorts("192.168.5.7:8080")} //局域网IPV4地址192.168.5.7:8080
+	//
+	//hertzNet := standard.NewTransporter
+	//
+	//opts = append(opts, server.WithTransport(hertzNet))
+	//
+	//h := server.Default(opts...)
 	register(h)
 	h.Spin()
 

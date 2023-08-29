@@ -143,7 +143,7 @@ func (s *VideoServiceImpl) Feed(ctx context.Context, req *video.DouyinFeedReques
 	}
 	res := &video.DouyinFeedResponse{
 		StatusCode: 0,
-		StatusMsg:  "发布列表获取成功",
+		StatusMsg:  "视频流获取成功",
 		VideoList:  videoList,
 		NextTime:   latestTime,
 	}

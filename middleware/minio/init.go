@@ -16,7 +16,7 @@ import (
 
 var (
 	minioClient     *minio.Client
-	endpoint        string = "192.168.100.129:9000"
+	endpoint        string = "192.168.5.54:9000"
 	accessKeyID     string = "douyin"
 	secretAccessKey string = "douyin123"
 	useSSL          bool   = false
