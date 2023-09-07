@@ -13,7 +13,7 @@ import (
 var videoClient videoservice.Client
 
 func initVideo() {
-	r, err := etcd.NewEtcdResolver([]string{"192.168.5.54.:2379"})
+	r, err := etcd.NewEtcdResolver([]string{"192.168.5.54:2379"})
 	if err != nil {
 		panic(err)
 	}

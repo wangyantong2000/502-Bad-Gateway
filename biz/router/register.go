@@ -3,9 +3,12 @@
 package router
 
 import (
-	"douyin/biz/router/messageapi"
+	favoriteapi "douyin/biz/router/favoriteapi"
+	messageapi "douyin/biz/router/messageapi"
+    relationapi "douyin/biz/router/relationapi"
 	userapi "douyin/biz/router/userapi"
 	videoapi "douyin/biz/router/videoapi"
+
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
 
@@ -15,4 +18,6 @@ func GeneratedRegister(r *server.Hertz) {
 	userapi.Register(r)
 	videoapi.Register(r)
 	messageapi.Register(r)
+	relationapi.Register(r)
+	favoriteapi.Register(r)
 }
