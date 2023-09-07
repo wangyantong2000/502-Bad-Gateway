@@ -3,9 +3,11 @@
 package router
 
 import (
+
 	favoriteapi "douyin/biz/router/favoriteapi"
 	messageapi "douyin/biz/router/messageapi"
     relationapi "douyin/biz/router/relationapi"
+
 	userapi "douyin/biz/router/userapi"
 	videoapi "douyin/biz/router/videoapi"
 
@@ -20,4 +22,5 @@ func GeneratedRegister(r *server.Hertz) {
 	messageapi.Register(r)
 	relationapi.Register(r)
 	favoriteapi.Register(r)
+
 }

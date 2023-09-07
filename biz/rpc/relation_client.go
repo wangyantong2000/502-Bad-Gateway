@@ -2,7 +2,10 @@ package rpc
 
 import (
 	"context"
-	"douyin/kitex_gen/relation"
+
+	relation "douyin/kitex_gen/relation"
+
+
 	"douyin/kitex_gen/relation/relationservice"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/transport"
@@ -13,7 +16,9 @@ import (
 var relationClient relationservice.Client
 
 func InitClient() {
-	r, err := etcd.NewEtcdResolver([]string{"192.168.5.54:2379"})
+
+	r, err := etcd.NewEtcdResolver([]string{"192.168.100.129:2379"})
+
 	if err != nil {
 		panic(err)
 	}
