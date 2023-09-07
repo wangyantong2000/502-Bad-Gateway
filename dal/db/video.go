@@ -60,7 +60,6 @@ func DeleteVideoByID(id int64, authorId int64) error {
 		tx.Rollback()
 		return err
 	}
-
 	res := tx.Model(&model.User{}).Where("id=?", authorId).Update("work_count", gorm.Expr("work_count-?", 1))
 	if res.Error != nil {
 		log.Printf(res.Error.Error())

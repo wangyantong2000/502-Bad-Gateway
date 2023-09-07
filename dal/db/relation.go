@@ -3,8 +3,10 @@ package db
 import (
 	"douyin/dal/model"
 	"errors"
+
 	"gorm.io/gorm"
 	"log"
+
 )
 
 //func ChangeRelation(fromId int64, toId int64, action int64) error {
