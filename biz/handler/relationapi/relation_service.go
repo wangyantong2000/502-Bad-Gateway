@@ -22,7 +22,10 @@ func GetFriendList(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-	clientResp, err := rpc.GetFriendsList(context.Background(), &relation.DouyinRelationFriendListRequest{UserId: req.UserId, Token: req.Token})
+
+	clientResp, err := rpc.GetFriendsList(ctx, &relation.DouyinRelationFriendListRequest{UserId: req.UserId, Token: req.Token})
+
+
 	if err != nil {
 		log.Println(err.Error())
 		c.String(consts.StatusBadRequest, err.Error())
@@ -42,7 +45,9 @@ func ChangeRelation(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-	clientResp, err := rpc.ChangeRelation(context.Background(), &relation.DouyinRelationActionRequest{Token: req.Token, ToUserId: req.ToUserId, ActionType: req.ActionType})
+
+	clientResp, err := rpc.ChangeRelation(ctx, &relation.DouyinRelationActionRequest{ActionType: req.ActionType, Token: req.Token})
+
 	if err != nil {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
@@ -81,7 +86,9 @@ func GetFollowingList(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
-	clientResp, err := rpc.GetFollowingList(context.Background(), &relation.DouyinRelationFollowListRequest{UserId: req.UserId, Token: req.Token})
+
+	clientResp, err := rpc.GetFollowingList(ctx, &relation.DouyinRelationFollowListRequest{UserId: req.UserId, Token: req.Token})
+
 	if err != nil {
 		c.String(consts.StatusBadRequest, err.Error())
 		return

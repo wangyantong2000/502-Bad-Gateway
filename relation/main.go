@@ -17,9 +17,11 @@ var (
 
 // relation_service的端口为8884
 func main() {
-	db.Init()
+
 	JwtParser = jwt.NewJWT([]byte("signingKey"))
-	r, err := etcd.NewEtcdRegistry([]string{"192.168.5.54:2379"}) // 服务器地址:2379
+	db.Init()
+	r, err := etcd.NewEtcdRegistry([]string{"192.168.100.129:2379"}) // 服务器地址:2379
+
 	if err != nil {
 		log.Fatal(err)
 	}
